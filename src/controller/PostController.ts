@@ -16,7 +16,7 @@ export class PostController {
   public createPost = async (req: Request, res: Response) => {
     try {
       const input = CreatePostSchema.parse({
-        name: req.body.name,
+        content: req.body.content,
         token: req.headers.authorization
       })
 
@@ -64,7 +64,7 @@ export class PostController {
     try {
       const input = editPostSchema.parse({
         token: req.headers.authorization,
-        name: req.body.name,
+        content: req.body.content,
         idToEdit: req.params.id
       })
 

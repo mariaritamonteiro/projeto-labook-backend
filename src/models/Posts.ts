@@ -34,7 +34,7 @@ export interface PostDB {
   
   export interface LikeDislikeDB {
     user_id: string,
-    posts_id: string,
+    post_id: string,
     like: number
   }
   
@@ -43,7 +43,7 @@ export interface PostDB {
     ALREADY_DISLIKED = "ALREADY DISLIKED"
   }
   
-  export class Posts {
+  export class Post {
     constructor(
       private id: string,
       private content: string,

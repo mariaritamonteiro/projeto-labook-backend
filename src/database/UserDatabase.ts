@@ -1,13 +1,14 @@
 import { UserDB } from "../models/Users";
-import { BaseDatabase } from "./BaseDataBase";
+import { BaseDataBase } from "./BaseDataBase";
 
-export class UserDatabase extends BaseDatabase {
+
+export class UserDatabase extends BaseDataBase {
   public static TABLE_USERS = "users"
 
   public insertUser = async (
     userDB: UserDB
   ): Promise<void> => {
-    await BaseDatabase
+    await BaseDataBase
       .connection(UserDatabase.TABLE_USERS)
       .insert(userDB)
   }
@@ -16,7 +17,7 @@ export class UserDatabase extends BaseDatabase {
     email: string
   ): Promise<UserDB | undefined> => {
     // const [userDB]: Array<UserDB | undefined> = ...
-    const [userDB] = await BaseDatabase
+    const [userDB] = await BaseDataBase
       .connection(UserDatabase.TABLE_USERS)
       .select()
       .where({ email })
