@@ -1,6 +1,26 @@
+import { UserDB } from "../models/Users";
 import { BaseDatabase } from "./BaseDataBase";
 
-export class userDatabase extends BaseDatabase{
-    public static TABLE_USERS = "users"
-    //metodos bancos de dados
+export class UserDatabase extends BaseDatabase {
+  public static TABLE_USERS = "users"
+
+  public insertUser = async (
+    userDB: UserDB
+  ): Promise<void> => {
+    await BaseDatabase
+      .connection(UserDatabase.TABLE_USERS)
+      .insert(userDB)
+  }
+
+  public findUserByEmail = async (
+    email: string
+  ): Promise<UserDB | undefined> => {
+    // const [userDB]: Array<UserDB | undefined> = ...
+    const [userDB] = await BaseDatabase
+      .connection(UserDatabase.TABLE_USERS)
+      .select()
+      .where({ email })
+
+    return userDB as UserDB | undefined
+  }
 }
