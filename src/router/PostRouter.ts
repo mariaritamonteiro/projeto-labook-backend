@@ -1,23 +1,22 @@
 import express from 'express'
-import { PlaylistController } from '../controller/PlaylistController'
-import { PlaylistBusiness } from '../business/PlaylistBusiness'
-import { PlaylistDatabase } from '../database/PlaylistDatabase'
-import { IdGenerator } from '../services/IdGenerator'
-import { TokenManager } from '../services/TokenManager'
+import { PostController } from '../controller/PostController'
+import { PostBusiness } from '../business/PostBusiness'
+import { PostDatabase } from '../database/PostDatabase'
+import { IdGenerator } from '../services/Idgenerator'
+import { TokenManager } from '../services/TokenManagen'
 
-export const playlistRouter = express.Router()
+export const postRouter = express.Router()
 
-const playlistController = new PlaylistController(
-  new PlaylistBusiness(
-    new PlaylistDatabase(),
+const postController = new PostController(
+  new PostBusiness(
+    new PostDatabase(),
     new IdGenerator(),
     new TokenManager()
   )
 )
 
-playlistRouter.post("/", playlistController.createPlaylist)
-playlistRouter.get("/", playlistController.getPlaylists)
-playlistRouter.put("/:id", playlistController.editPlaylist)
-playlistRouter.delete("/:id", playlistController.deletePlaylist)
-
-playlistRouter.put("/:id/like", playlistController.likeOrDislikePlaylist)
+postRouter.post("/", postController.createPost)
+postRouter.get("/", postController.getPost)
+postRouter.put("/:id", postController.editPost)
+postRouter.delete("/:id", postController.deletePost)
+postRouter.put("/:id/like", postController.likeOrDislikePost)

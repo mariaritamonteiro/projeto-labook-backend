@@ -7,10 +7,10 @@ import { LikeOrDislikePostInputDTO, LikeOrDislikePostOutputDTO } from "../dtos/p
 import { ForbiddenError } from "../errors/ForbiddenError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
-import { LikeDislikeDB, POST_LIKE, Posts } from "../models/Posts";
+import { LikeDislikeDB, POST_LIKE, Post } from "../models/Posts";
 import { USER_ROLES } from "../models/Users";
 import { IdGenerator } from "../services/Idgenerator";
-import { TokenManager } from "../services/TokenManager";
+import { TokenManager } from "../services/TokenManagen";
 
 export class PostBusiness {
   constructor(
@@ -32,7 +32,7 @@ export class PostBusiness {
 
     const id = this.idGenerator.generate()
 
-    const post = new Posts(
+    const post = new Post(
       id,
       content,
       0,
@@ -62,12 +62,12 @@ export class PostBusiness {
       throw new UnauthorizedError()
     }
 
-    const postDBwithCreatorName =
-      await this.postDatabase.getPostsWithCreatorName()
+    const postDBwithCreatorContent  =
+      await this.postDatabase.getPostsWithCreatorContent()
     
-    const post = postDBwithCreatorName
+    const post = postDBwithCreatorContent
       .map((postWithCreatorName) => {
-        const post = new Posts(
+        const post = new Post(
           postWithCreatorName.id,
           postWithCreatorName.content,
           postWithCreatorName.likes,
@@ -109,7 +109,7 @@ export class PostBusiness {
       throw new ForbiddenError("somente quem criou a playlist pode editá-la")
     }
 
-    const post = new Posts(
+    const post = new Post(
       postDB.id,
       postDB.content,
       postDB.likes,
@@ -179,7 +179,7 @@ export class PostBusiness {
       throw new NotFoundError("playlist com essa id não existe")
     }
 
-    const post = new Posts(
+    const post = new Post(
       postDBWithCreatorName.id,
       postDBWithCreatorName.content,
       postDBWithCreatorName.likes,
@@ -194,7 +194,7 @@ export class PostBusiness {
 
     const likeDislikeDB: LikeDislikeDB = {
       user_id: payload.id,
-      posts_id: postId,
+      post_id: postId,
       like: likeSQlite
     }
 
