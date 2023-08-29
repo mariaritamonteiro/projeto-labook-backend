@@ -27,7 +27,7 @@
 
 # Exemplos de Requisições
 # Signup
-## Endpoint público utilizado para cadastro. Devolve um token jwt.
+- Endpoint público resposável pela criação de cadastra de usuários. Devolve um token jwt.
 ```
 // request POST /users/signup
 // body JSON
@@ -44,7 +44,7 @@
 }
 ```
 # Login
-- Endpoint público utilizado para login. Devolve um token jwt.
+- Endpoint público responsável pela verificação de acesso do usuário. Devolve um token jwt.
 ```
 // request POST /users/login
 // body JSON
@@ -61,7 +61,7 @@
 
 ```
 # Create post
-- Endpoint protegido, requer um token jwt para acessá-lo.
+- Endpoint protegido, responsável pela criação de posts, requer um token jwt para acessá-lo.
 ```
 // request POST /posts
 // headers.authorization = "token jwt"
@@ -75,7 +75,7 @@
 ```
 
 # Get posts
-- Endpoint protegido, requer um token jwt para acessá-lo .
+- Endpoint protegido, responsável pela vizualização dos posts criados pelos usuários, requer um token jwt para acessá-lo .
 ```
    // request GET /posts
 // headers.authorization = "token jwt"
@@ -137,7 +137,7 @@
 ```
 
 # Edit post
-- Endpoint protegido, requer um token jwt para acessá-lo.
+- Endpoint protegido, resposável pela edição de um post, requer um token jwt para acessá-lo.
 Só quem criou o post pode editá-lo e somente o conteúdo pode ser editado.
 ```
 // request PUT /posts/:id
@@ -151,7 +151,7 @@ Só quem criou o post pode editá-lo e somente o conteúdo pode ser editado.
 // status 200 OK
 ```
 # Delete post
-- Endpoint protegido, requer um token jwt para acessá-lo.
+- Endpoint protegido, resposável por excluir um post, requer um token jwt para acessá-lo.
 Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer pessoa.
 ```
 // request DELETE /posts/:id
@@ -161,7 +161,7 @@ Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer p
 // status 200 OK
 ```
 # Like (funcionalidade 1)
-- Endpoint protegido, requer um token jwt para acessá-lo.
+- Endpoint protegido, reponsável por dá like em um post, requer um token jwt para acessá-lo.
 - Quem criou o post não pode dar like ou dislike no mesmo.
 
 - Caso dê um like em um post que já tenha dado like, o like é desfeito.
@@ -184,6 +184,7 @@ Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer p
 ```
 
 # Dislike (funcionalidade 2)
+- Endpoint protegido, reponsável por dá dislike em um post, requer um token jwt para acessá-lo.
 ```
 // request PUT /posts/:id/like
 // headers.authorization = "token jwt"
@@ -196,7 +197,7 @@ Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer p
 // status 200 OK
 ```
 # Documentação Postman
-[Click aqui para ter acesso a documentação do Postman.]()
+[Click aqui para ter acesso a documentação do Postman.](https://documenter.getpostman.com/view/26594514/2s9Y5ZwhNX)
 
 # Tecnologias Ultilizadas
 Conteúdos abordados:

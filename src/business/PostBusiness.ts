@@ -102,11 +102,11 @@ export class PostBusiness {
       .findPostById(idToEdit)
 
     if (!postDB) {
-      throw new NotFoundError("playlist com essa id não existe")
+      throw new NotFoundError("não existe post com essa id não existe")
     }
 
     if (payload.id !== postDB.creator_id) {
-      throw new ForbiddenError("somente quem criou a playlist pode editá-la")
+      throw new ForbiddenError("somente quem criou o post pode editá-lo")
     }
 
     const post = new Post(
@@ -145,12 +145,12 @@ export class PostBusiness {
       .findPostById(idToDelete)
 
     if (!postDB) {
-      throw new NotFoundError("playlist com essa id não existe")
+      throw new NotFoundError("não existe post com essa id não existe")
     }
 
     if (payload.role !== USER_ROLES.ADMIN) {
       if (payload.id !== postDB.creator_id) {
-        throw new ForbiddenError("somente quem criou a playlist pode editá-la")
+        throw new ForbiddenError("somente quem criou o post pode editá-la")
       }
     }
 
@@ -176,7 +176,7 @@ export class PostBusiness {
       await this.postDatabase.findPlaylistWithCreatorNameById(postId)
 
     if (!postDBWithCreatorName) {
-      throw new NotFoundError("playlist com essa id não existe")
+      throw new NotFoundError("não existe post com essa id não existe")
     }
 
     const post = new Post(
