@@ -222,7 +222,7 @@ Conteúdos abordados:
 ## Rodando o Back End (servidor)
 ```bash
 # Clone este repositório
-$ git clone <>
+$ git clone <https://github.com/mariaritamonteiro/projeto-labook-backend>
 
 # Instale as dependências
 $ npm install
